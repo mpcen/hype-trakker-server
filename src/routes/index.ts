@@ -7,6 +7,6 @@ import { projectRouter } from './project';
 
 const router = Router();
 
-router.use('/project', projectRouter);
+router.use('/projects', projectRouter);
 
 export { router as apiRouter };
