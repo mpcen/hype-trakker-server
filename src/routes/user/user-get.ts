@@ -28,7 +28,7 @@ export const getUser = (prisma: PrismaClient): RequestHandler => {
 
             res.send(user);
         } catch (err) {
-            return res.status(500).json({ message: 'UserService - Internal server error' });
+            return res.status(500).json({ message: 'Internal server error - getUser' });
         } finally {
         }
     };

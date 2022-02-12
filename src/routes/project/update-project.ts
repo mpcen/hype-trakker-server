@@ -36,7 +36,7 @@ export const updateProject = (prisma: PrismaClient): RequestHandler => {
 
             res.send(updatedProject);
         } catch (err) {
-            err;
+            return res.status(500).json({ message: 'Internal server error - updateProject' });
         } finally {
         }
     };

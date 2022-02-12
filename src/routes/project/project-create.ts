@@ -34,7 +34,7 @@ export const createProject = (prisma: PrismaClient): RequestHandler => {
 
             res.send(newProject);
         } catch (err) {
-            err;
+            return res.status(500).json({ message: 'Internal server error - createProject' });
         } finally {
         }
     };

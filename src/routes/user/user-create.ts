@@ -23,7 +23,7 @@ export const createUser = (prisma: PrismaClient): RequestHandler => {
 
             res.send(newUser);
         } catch (err) {
-            err;
+            return res.status(500).json({ message: 'Internal server error - createUser' });
         } finally {
         }
     };

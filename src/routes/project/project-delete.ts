@@ -18,7 +18,7 @@ export const deleteProject = (prisma: PrismaClient): RequestHandler => {
 
             res.send(deletedProject);
         } catch (err) {
-            err;
+            return res.status(500).json({ message: 'Internal server error - deleteProject' });
         } finally {
         }
     };
