@@ -1,8 +1,15 @@
-import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { Router } from 'express';
 
-import { projectRouter } from './project';
+import { getProjectRoutes } from './project';
+import { getUserRoutes } from './user';
 
-export function api(router: Router, prisma: PrismaClient) {
-    return [router.use('/projects', projectRouter(router, prisma))];
+const projectRouter = Router();
+const userRouter = Router();
+
+export function getApiRoutes(router: Router, prisma: PrismaClient) {
+    router.use('/projects', getProjectRoutes(projectRouter, prisma));
+    router.use('/users', getUserRoutes(userRouter, prisma));
+
+    return router;
 }

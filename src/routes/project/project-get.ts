@@ -22,7 +22,7 @@ export const getProject = (prisma: PrismaClient): RequestHandler => {
 
             res.send(project);
         } catch (err) {
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({ message: 'ProjectService - Internal server error' });
         } finally {
         }
     };
