@@ -1,13 +1,16 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { urlencoded, json } from 'body-parser';
+import { PrismaClient } from '@prisma/client';
 
-import { apiRouter } from './routes';
+import { api } from './routes';
 
 const app = express();
+const router = Router();
+const prisma = new PrismaClient();
 
 app.use(urlencoded({ extended: true }));
 app.use(json());
 
-app.use('/api', apiRouter);
+app.use('/api', api(router, prisma));
 
 export { app };

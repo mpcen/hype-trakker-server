@@ -1,13 +1,18 @@
 import { Router } from 'express';
+import { PrismaClient } from '@prisma/client';
 
-import { createProject } from './create-project';
-import { getProject } from './get-project';
-import { getProjects } from './get-projects';
+import { createProject } from './project-create';
+import { getProject } from './project-get';
+import { getProjects } from './projects-get';
 import { updateProject } from './update-project';
-import { deleteProject } from './delete-project';
+import { deleteProject } from './project-delete';
 
-const router = Router();
-
-router.use([createProject, getProject, getProjects, updateProject, deleteProject]);
-
-export { router as projectRouter };
+export function projectRouter(router: Router, prisma: PrismaClient) {
+    return [
+        router.get('/', getProjects(prisma)),
+        router.get('/:id', getProject(prisma)),
+        router.post('/', createProject(prisma)),
+        router.put('/:id', updateProject(prisma)),
+        router.delete('/:id', deleteProject(prisma)),
+    ];
+}

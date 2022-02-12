@@ -4,17 +4,15 @@ import { Request, RequestHandler, Response } from 'express';
 /**
  *
  * @param prisma
- * @param id
  * @param Prisma.ProjectCreateInput
  * @returns
  */
-export const updateProject = (prisma: PrismaClient): RequestHandler => {
+export const createProject = (prisma: PrismaClient): RequestHandler => {
     return async (req: Request, res: Response) => {
         const project: Prisma.ProjectCreateInput = req.body;
 
         try {
-            const updatedProject = await prisma.project.update({
-                where: { id: Number(req.params.id) },
+            const newProject = await prisma.project.create({
                 data: {
                     name: project.name,
                     description: project.description ? project.description : undefined,
@@ -32,9 +30,9 @@ export const updateProject = (prisma: PrismaClient): RequestHandler => {
                 },
             });
 
-            console.dir(updatedProject, { depth: null });
+            console.dir(newProject, { depth: null });
 
-            res.send(updatedProject);
+            res.send(newProject);
         } catch (err) {
             err;
         } finally {
