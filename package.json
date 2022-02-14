@@ -11,13 +11,21 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@metamask/eth-sig-util": "^4.0.0",
         "@prisma/client": "^3.9.1",
         "axios": "^0.25.0",
+        "cors": "^2.8.5",
         "dotenv": "^16.0.0",
-        "express": "^4.17.2"
+        "eth-sig-util": "^3.0.1",
+        "ethereumjs-util": "^7.1.4",
+        "express": "^4.17.2",
+        "jsonwebtoken": "^8.5.1"
     },
     "devDependencies": {
+        "@types/cors": "^2.8.12",
+        "@types/eth-sig-util": "^2.1.1",
         "@types/express": "^4.17.13",
+        "@types/jsonwebtoken": "^8.5.8",
         "@types/node": "^12.20.43",
         "prisma": "^3.9.1",
         "ts-node": "^10.4.0",

@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { createProject } from './project-create';
 import { getProject } from './project-get';
 import { getProjects } from './projects-get';
-import { updateProject } from './update-project';
+import { updateProject } from './project-update';
 import { deleteProject } from './project-delete';
 
 export function getProjectRoutes(router: Router, prisma: PrismaClient) {
