@@ -40,15 +40,15 @@ model User {
 }
 
 model UserProjects {
-    dateAdded DateTime @default(now())
-    acquiredAllowList Boolean
-    walletSubmitted Boolean
-    notes String @db.VarChar()
-    
     user User @relation(fields: [userId], references: [id])
     userId Int
     project Project @relation(fields: [projectId], references: [id])
     projectId Int
 
+    dateAdded DateTime @default(now())
+    acquiredAllowList Boolean @default(false)
+    walletSubmitted Boolean @default(false)
+    notes String? @db.VarChar()
+    
     @@id([userId, projectId])
 }

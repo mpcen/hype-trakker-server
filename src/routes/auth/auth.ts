@@ -6,13 +6,6 @@ import * as sigUtil from 'eth-sig-util';
 
 const { JWT_SECRET } = process.env;
 
-/**
- *
- * @param prisma
- * @param address
- * @param signature
- * @returns
- */
 export const auth = (prisma: PrismaClient): RequestHandler => {
     return async (req: Request, res: Response) => {
         const { address, signature } = req.body;
@@ -22,10 +15,17 @@ export const auth = (prisma: PrismaClient): RequestHandler => {
         }
 
         try {
-            const user = await prisma.user.findFirst({ where: { address: address as string } });
+            let user = await prisma.user.findFirst({ where: { address: address as string } });
 
             if (!user) {
-                return res.status(404).json({ message: 'User not found', status: 404 });
+                user = await prisma.user.create({
+                    data: {
+                        address: address,
+                        nonce: Math.floor(Math.random() * 1000000),
+                    },
+                });
+
+                console.dir(user, { depth: null });
             }
 
             const msg = `I am signing my one-time nonce: ${user.nonce}. This signature will be used for authentication.`;

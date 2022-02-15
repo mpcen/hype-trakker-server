@@ -1,24 +1,18 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-/**
- *
- * @param prisma
- * @param account
- * @returns
- */
 export const getUser = (prisma: PrismaClient): RequestHandler => {
     return async (req: Request, res: Response) => {
-        const { account } = req.query;
+        const { address } = req.query;
 
-        if (!account) {
+        if (!address) {
             return res.status(404).json({ message: 'User not found' });
         }
 
         try {
             const user = await prisma.user.findFirst({
                 where: {
-                    address: account as string,
+                    address: address as string,
                 },
             });
 

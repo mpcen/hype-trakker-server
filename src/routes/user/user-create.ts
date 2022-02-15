@@ -1,12 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-/**
- *
- * @param prisma
- * @param Prisma.UserCreateInput
- * @returns
- */
 export const createUser = (prisma: PrismaClient): RequestHandler => {
     return async (req: Request, res: Response) => {
         const user: Prisma.UserCreateInput = req.body;

@@ -1,11 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-/**
- *
- * @param prisma
- * @returns
- */
 export const getProjects = (prisma: PrismaClient): RequestHandler => {
     return async (req: Request, res: Response) => {
         try {
