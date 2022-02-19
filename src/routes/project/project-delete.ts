@@ -1,14 +1,13 @@
-import { PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-export const deleteProject = (prisma: PrismaClient): RequestHandler => {
-    return async (req: Request, res: Response) => {
-        try {
-            const deletedProject = await prisma.project.delete({
-                where: { id: Number(req.params.id) },
-            });
+import { ProjectService } from '../../services/ProjectService';
 
-            console.dir(deletedProject, { depth: null });
+export const deleteProject = (projectService: ProjectService): RequestHandler => {
+    return async (req: Request, res: Response) => {
+        const id = req.params.id;
+
+        try {
+            const deletedProject = await projectService.deleteProject(Number(id));
 
             res.send(deletedProject);
         } catch (err) {

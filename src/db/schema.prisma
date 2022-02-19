@@ -11,44 +11,96 @@ datasource db {
 }
 
 model Project {
-    id Int @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    name String @db.VarChar(255)
-    description String?
-    presaleDateTime DateTime?
-    publicSaleDateTime DateTime?
-    hasAllowList Boolean?
-    isRevealed Boolean?
-    projectState Int?
-    mintPrice String?
-    maxMintPerTransaction Int?
+    project_id Int @id @default(autoincrement())
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
 
-    users UserProjects[]
+    name String @db.VarChar(255)
+    supply Int?
+    allocated_allowlist_amount Int?
+    description String?
+    twitter_handle String?
+    discord_url String?
+    opensea_url String?
+    presale_datetime DateTime?
+    public_sale_datetime DateTime?
+    has_allow_list Boolean?
+    is_revealed Boolean?
+    project_state ProjectState? @default(PAUSED)
+    mint_price String?
+    max_mint_per_transaction Int?
+
+    users UserProject[]
+    crews CrewProject[]
 }
 
 model User {
-    id Int @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    user_id Int @id @default(autoincrement())
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+    
     address String @db.VarChar(255) @unique
+    user_name String? @db.VarChar(255) @unique
     nonce Int
-    userName String? @db.VarChar(255) @unique
-    avatarUrl String? @db.VarChar(255)
+    avatar_url String? @db.VarChar(255)
 
-    projects UserProjects[]
+    projects UserProject[]
+    crews CrewUser[]
 }
 
-model UserProjects {
-    user User @relation(fields: [userId], references: [id])
-    userId Int
-    project Project @relation(fields: [projectId], references: [id])
-    projectId Int
+model UserProject {
+    user User @relation(fields: [user_id], references: [user_id])
+    user_id Int
+    project Project @relation(fields: [project_id], references: [project_id])
+    project_id Int
 
-    dateAdded DateTime @default(now())
-    acquiredAllowList Boolean @default(false)
-    walletSubmitted Boolean @default(false)
-    notes String? @db.VarChar()
+    date_added DateTime @default(now())
     
-    @@id([userId, projectId])
+    @@id([user_id, project_id])
+}
+
+model Crew {
+    crew_id Int @id @default(autoincrement())
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+    crew_name String? @db.VarChar(255) @unique
+    avatarUrl String? @db.VarChar(255)
+
+    users CrewUser[]
+    projects CrewProject[]
+}
+
+model CrewUser {
+    crew Crew @relation(fields: [crew_id], references: [crew_id])
+    crew_id Int
+    user User @relation(fields: [user_id], references: [user_id])
+    user_id Int
+
+    role CrewUserRole @default(REGULAR)
+    date_added DateTime @default(now())
+    
+    @@id([user_id, crew_id])
+}
+
+model CrewProject {
+    crew Crew @relation(fields: [crew_id], references: [crew_id])
+    crew_id Int
+    project Project @relation(fields: [project_id], references: [project_id])
+    project_id Int
+
+    date_added DateTime @default(now())
+
+    @@id([crew_id, project_id])
+}
+
+enum ProjectState {
+    PAUSED
+    PRESALE
+    PUBLIC_SALE
+}
+
+enum CrewUserRole {
+    ADMIN
+    MOD
+    REGULAR
 }

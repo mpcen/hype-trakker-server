@@ -6,13 +6,18 @@ import { getProject } from './project-get';
 import { getProjects } from './projects-get';
 import { updateProject } from './project-update';
 import { deleteProject } from './project-delete';
+import { ProjectService } from '../../services/ProjectService';
+import { ProjectRepository } from '../../repositories/ProjectRepository';
 
-export function getProjectRoutes(router: Router, prisma: PrismaClient) {
-    router.get('/', getProjects(prisma));
-    router.get('/:id', getProject(prisma));
-    router.post('/', createProject(prisma));
-    router.put('/:id', updateProject(prisma));
-    router.delete('/:id', deleteProject(prisma));
+export function getProjectRoutes(router: Router, prismaClient: PrismaClient) {
+    const projectRepository = new ProjectRepository(prismaClient);
+    const projectService = new ProjectService(projectRepository);
+
+    router.get('/all', getProjects(projectService));
+    router.get('/:id', getProject(projectService));
+    router.post('/', createProject(projectService));
+    router.put('/:id', updateProject(projectService));
+    router.delete('/:id', deleteProject(projectService));
 
     return router;
 }

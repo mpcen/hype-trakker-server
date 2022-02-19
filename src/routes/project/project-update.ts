@@ -1,36 +1,19 @@
-import { Prisma, PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-export const updateProject = (prisma: PrismaClient): RequestHandler => {
+import { Project } from '../../interfaces/Project';
+import { ProjectService } from '../../services/ProjectService';
+
+export const updateProject = (projectService: ProjectService): RequestHandler => {
     return async (req: Request, res: Response) => {
-        const project: Prisma.ProjectCreateInput = req.body;
+        const id = req.params.id;
+        const data: Project = req.body;
 
         try {
-            const updatedProject = await prisma.project.update({
-                where: { id: Number(req.params.id) },
-                data: {
-                    name: project.name,
-                    description: project.description ? project.description : undefined,
-                    presaleDateTime: project.presaleDateTime ? project.presaleDateTime : undefined,
-                    publicSaleDateTime: project.publicSaleDateTime
-                        ? project.publicSaleDateTime
-                        : undefined,
-                    hasAllowList: project.hasAllowList ? project.hasAllowList : undefined,
-                    isRevealed: project.isRevealed ? project.isRevealed : undefined,
-                    projectState: project.projectState ? project.projectState : undefined,
-                    mintPrice: project.mintPrice ? project.mintPrice : undefined,
-                    maxMintPerTransaction: project.maxMintPerTransaction
-                        ? project.maxMintPerTransaction
-                        : undefined,
-                },
-            });
-
-            console.dir(updatedProject, { depth: null });
+            const updatedProject = await projectService.updateProject(Number(id), data);
 
             res.send(updatedProject);
         } catch (err) {
-            return res.status(500).json({ message: 'Internal server error - updateProject' });
-        } finally {
+            return res.status(500).json({ message: 'Internal server error - createProject' });
         }
     };
 };

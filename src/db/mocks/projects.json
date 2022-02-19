@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Project 1",
+        "supply": 10000,
+        "allocatedAllowlistAmount": "",
+        "description": "",
+        "twitterHandle": "",
+        "discordUrl": "",
+        "openseaUrl": "",
+        "presaleDatetime": "",
+        "publicSaleDatetime": "",
+        "hasAllowList": "",
+        "isRevealed": "",
+        "projectState": "",
+        "mintPrice": "",
+        "maxMintPerTransaction": ""
+    },
+    {
+        "name": "Project 2",
+        "supply": 5000,
+        "allocatedAllowlistAmount": "",
+        "description": "",
+        "twitterHandle": "",
+        "discordUrl": "",
+        "openseaUrl": "",
+        "presaleDatetime": "",
+        "publicSaleDatetime": "",
+        "hasAllowList": "",
+        "isRevealed": "",
+        "projectState": "",
+        "mintPrice": "",
+        "maxMintPerTransaction": ""
+    },
+    {
+        "name": "Project 3",
+        "supply": 1000,
+        "allocatedAllowlistAmount": "",
+        "description": "",
+        "twitterHandle": "",
+        "discordUrl": "",
+        "openseaUrl": "",
+        "presaleDatetime": "",
+        "publicSaleDatetime": "",
+        "hasAllowList": "",
+        "isRevealed": "",
+        "projectState": "",
+        "mintPrice": "",
+        "maxMintPerTransaction": ""
+    }
+]

@@ -1,14 +1,15 @@
-import { PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-export const getProjects = (prisma: PrismaClient): RequestHandler => {
-    return async (req: Request, res: Response) => {
+import { ProjectService } from '../../services/ProjectService';
+
+export const getProjects = (projectService: ProjectService): RequestHandler => {
+    return async (_: Request, res: Response) => {
         try {
-            const projects = await prisma.project.findMany();
+            const projects = await projectService.getProjects();
 
             res.send(projects);
         } catch (err) {
-            return res.status(500).json({ message: 'ProjectService - Internal server error' });
+            return res.status(500).json({ message: 'getProjects - Internal server error' });
         } finally {
         }
     };

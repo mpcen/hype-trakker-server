@@ -1,14 +1,13 @@
-import { PrismaClient } from '@prisma/client';
 import { Request, RequestHandler, Response } from 'express';
 
-export const getProject = (prisma: PrismaClient): RequestHandler => {
+import { ProjectService } from '../../services/ProjectService';
+
+export const getProject = (projectService: ProjectService): RequestHandler => {
     return async (req: Request, res: Response) => {
+        const id = req.params.id;
+
         try {
-            const project = await prisma.project.findFirst({
-                where: {
-                    id: Number(req.params.id),
-                },
-            });
+            const project = await projectService.getProject(Number(id));
 
             if (!project) {
                 return res.status(404).json({ message: 'Project not found' });
@@ -17,7 +16,6 @@ export const getProject = (prisma: PrismaClient): RequestHandler => {
             res.send(project);
         } catch (err) {
             return res.status(500).json({ message: 'Internal server error - getProject' });
-        } finally {
         }
     };
 };
