@@ -23,7 +23,7 @@ export const authUser = (authService: AuthService, userService: UserService): Re
 
             const token = await authService.authenticate(user, signature);
 
-            res.send(token);
+            res.json(token);
         } catch (err) {
             return res.status(500).json({ message: 'Internal server error - authUser' });
         }

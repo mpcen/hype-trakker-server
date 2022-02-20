@@ -20,14 +20,20 @@ export class AuthService {
     }
 
     private async verifySignature(user: User, clientSignature: string) {
-        const serverSignature = `I am signing my one-time nonce: ${user.nonce}. This signature will be used for authentication. No transactions will ever be executed without your permission.`;
-        const serverSignatureBufferHex = ethUtil.bufferToHex(Buffer.from(serverSignature, 'utf8'));
-        const addressFromSignature = sigUtil.recoverPersonalSignature({
-            data: serverSignatureBufferHex,
-            sig: clientSignature,
-        });
+        try {
+            const serverSignature = `I am signing my one-time nonce: ${user.nonce}. This signature will be used for authentication. No transactions will ever be executed without your permission.`;
+            const serverSignatureBufferHex = ethUtil.bufferToHex(
+                Buffer.from(serverSignature, 'utf8')
+            );
+            const addressFromSignature = sigUtil.recoverPersonalSignature({
+                data: serverSignatureBufferHex,
+                sig: clientSignature,
+            });
 
-        if (addressFromSignature.toLowerCase() !== user.address.toLowerCase()) {
+            if (addressFromSignature.toLowerCase() !== user.address.toLowerCase()) {
+                throw new Error('Signature verification failed');
+            }
+        } catch (err) {
             throw new Error('Signature verification failed');
         }
     }

@@ -63,7 +63,7 @@ export class UserRepository {
                 },
             });
 
-            console.dir(newUser, { depth: null });
+            console.dir({ method: 'create', newUser }, { depth: null });
 
             return newUser;
         } catch (err) {
@@ -84,7 +84,7 @@ export class UserRepository {
                 },
             });
 
-            console.dir(updatedUser, { depth: null });
+            console.dir({ method: 'update', updatedUser }, { depth: null });
 
             return updatedUser;
         } catch (err) {
@@ -99,7 +99,7 @@ export class UserRepository {
                 where: { user_id: id },
             });
 
-            console.dir(deletedUser, { depth: null });
+            console.dir({ method: 'delete', deletedUser }, { depth: null });
 
             return deletedUser;
         } catch (err) {
