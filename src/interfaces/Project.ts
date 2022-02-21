@@ -1,7 +1,7 @@
 export enum ProjectState {
     PAUSED = 'PAUSED',
     PRESALE = 'PRESALE',
-    PUBLIC_SALE = 'PUBLIC_SALE',
+    PUBLIC = 'PUBLIC',
 }
 
 export interface Project {
@@ -19,4 +19,5 @@ export interface Project {
     projectState?: ProjectState;
     mintPrice?: string;
     maxMintPerTransaction?: number;
+    contractAddress?: string;
 }

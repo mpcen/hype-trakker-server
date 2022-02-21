@@ -58,6 +58,7 @@ export class ProjectRepository {
                     project_state: projectData.projectState,
                     mint_price: projectData.mintPrice,
                     max_mint_per_transaction: projectData.maxMintPerTransaction,
+                    contract_address: projectData.contractAddress,
                     created_by: {
                         connect: {
                             user_id: userId,

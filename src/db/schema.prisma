@@ -29,6 +29,7 @@ model Project {
     project_state ProjectState? @default(PAUSED)
     mint_price String?
     max_mint_per_transaction Int?
+    contract_address String?
 
     created_by User? @relation(fields: [userId], references: [user_id])
     userId Int?
@@ -50,5 +51,5 @@ model User {
 enum ProjectState {
     PAUSED
     PRESALE
-    PUBLIC_SALE
+    PUBLIC
 }
