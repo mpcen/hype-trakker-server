@@ -95,6 +95,7 @@ export class ProjectRepository {
                     project_state: data.projectState,
                     mint_price: data.mintPrice,
                     max_mint_per_transaction: data.maxMintPerTransaction,
+                    contract_address: data.contractAddress,
                 },
             });
 
