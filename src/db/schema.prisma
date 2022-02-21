@@ -30,8 +30,8 @@ model Project {
     mint_price String?
     max_mint_per_transaction Int?
 
-    users UserProject[]
-    crews CrewProject[]
+    created_by User? @relation(fields: [userId], references: [user_id])
+    userId Int?
 }
 
 model User {
@@ -44,63 +44,11 @@ model User {
     nonce Int
     avatar_url String? @db.VarChar(255)
 
-    projects UserProject[]
-    crews CrewUser[]
-}
-
-model UserProject {
-    user User @relation(fields: [user_id], references: [user_id])
-    user_id Int
-    project Project @relation(fields: [project_id], references: [project_id])
-    project_id Int
-
-    date_added DateTime @default(now())
-    
-    @@id([user_id, project_id])
-}
-
-model Crew {
-    crew_id Int @id @default(autoincrement())
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
-    crew_name String? @db.VarChar(255) @unique
-    avatarUrl String? @db.VarChar(255)
-
-    users CrewUser[]
-    projects CrewProject[]
-}
-
-model CrewUser {
-    crew Crew @relation(fields: [crew_id], references: [crew_id])
-    crew_id Int
-    user User @relation(fields: [user_id], references: [user_id])
-    user_id Int
-
-    role CrewUserRole @default(REGULAR)
-    date_added DateTime @default(now())
-    
-    @@id([user_id, crew_id])
-}
-
-model CrewProject {
-    crew Crew @relation(fields: [crew_id], references: [crew_id])
-    crew_id Int
-    project Project @relation(fields: [project_id], references: [project_id])
-    project_id Int
-
-    date_added DateTime @default(now())
-
-    @@id([crew_id, project_id])
+    projects Project[]
 }
 
 enum ProjectState {
     PAUSED
     PRESALE
     PUBLIC_SALE
-}
-
-enum CrewUserRole {
-    ADMIN
-    MOD
-    REGULAR
 }

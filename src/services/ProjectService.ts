@@ -4,9 +4,9 @@ import { ProjectRepository } from '../repositories/ProjectRepository';
 export class ProjectService {
     constructor(private projectRepository: ProjectRepository) {}
 
-    async getProjects() {
+    async getProjects(userId: number) {
         try {
-            const projects = await this.projectRepository.getProjects();
+            const projects = await this.projectRepository.getProjects(userId);
 
             return projects;
         } catch (err) {
@@ -15,9 +15,9 @@ export class ProjectService {
         }
     }
 
-    async getProject(id: number) {
+    async getProject(userId: number, projectId: number) {
         try {
-            const project = await this.projectRepository.getProject(id);
+            const project = await this.projectRepository.getProject(userId, projectId);
 
             return project;
         } catch (err) {
@@ -26,9 +26,9 @@ export class ProjectService {
         }
     }
 
-    async createProject(data: Project) {
+    async createProject(userId: number, projectData: Project) {
         try {
-            const project = await this.projectRepository.createProject(data);
+            const project = await this.projectRepository.createProject(userId, projectData);
 
             return project;
         } catch (err) {

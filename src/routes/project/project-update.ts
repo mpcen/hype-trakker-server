@@ -13,7 +13,7 @@ export const updateProject = (projectService: ProjectService): RequestHandler =>
 
             res.send(updatedProject);
         } catch (err) {
-            return res.status(500).json({ message: 'Internal server error - createProject' });
+            return res.status(500).json({ message: 'Internal server error - updateProject' });
         }
     };
 };
