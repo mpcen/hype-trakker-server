@@ -41,6 +41,7 @@ export class ProjectService {
                 : undefined,
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
+            revealDatetime: serializeDatetime(projectData.revealDatetime),
             isRevealed: projectData.isRevealed ? Boolean(projectData.isRevealed) : undefined,
             hasAllowList: projectData.hasAllowList ? Boolean(projectData.hasAllowList) : undefined,
         };
@@ -67,6 +68,7 @@ export class ProjectService {
                 : undefined,
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
+            revealDatetime: serializeDatetime(projectData.revealDatetime),
             isRevealed: projectData.isRevealed ? Boolean(projectData.isRevealed) : undefined,
             hasAllowList: projectData.hasAllowList ? Boolean(projectData.hasAllowList) : undefined,
         };

@@ -14,6 +14,7 @@ export interface Project {
     openseaUrl?: string;
     presaleDatetime?: string;
     publicSaleDatetime?: string;
+    revealDatetime?: string;
     hasAllowList?: boolean;
     isRevealed?: boolean;
     projectState?: ProjectState;

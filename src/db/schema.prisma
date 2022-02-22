@@ -24,6 +24,7 @@ model Project {
     openseaUrl String?
     presaleDatetime DateTime? @db.Timestamptz()
     publicSaleDatetime DateTime? @db.Timestamptz()
+    revealDatetime DateTime? @db.Timestamptz()
     hasAllowList Boolean? @default(false)
     isRevealed Boolean? @default(false)
     projectState ProjectState? @default(PAUSED)
