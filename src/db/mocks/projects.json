@@ -14,7 +14,8 @@
         "hasAllowList": true,
         "isRevealed": false,
         "projectState": "PAUSED",
-        "mintPrice": "0.08",
+        "presaleMintPrice": "0.08",
+        "publicSaleMintPrice": "0.1",
         "maxMintPerTransaction": 3,
         "contractAddress": "0x03235jd94h294je93je92hedg395hd93"
     },
@@ -33,7 +34,8 @@
         "hasAllowList": true,
         "isRevealed": false,
         "projectState": "PAUSED",
-        "mintPrice": "0.08",
+        "presaleMintPrice": "0.08",
+        "publicSaleMintPrice": "0.1",
         "maxMintPerTransaction": 3,
         "contractAddress": "0x03235jd94h294je93je92hedg395hd93"
     },
@@ -52,7 +54,8 @@
         "hasAllowList": true,
         "isRevealed": false,
         "projectState": "PAUSED",
-        "mintPrice": "0.08",
+        "presaleMintPrice": "0.08",
+        "publicSaleMintPrice": "0.1",
         "maxMintPerTransaction": 3,
         "contractAddress": "0x03235jd94h294je93je92hedg395hd93"
     },
@@ -71,7 +74,8 @@
         "hasAllowList": true,
         "isRevealed": false,
         "projectState": "PAUSED",
-        "mintPrice": "0.08",
+        "presaleMintPrice": "0.08",
+        "publicSaleMintPrice": "0.1",
         "maxMintPerTransaction": 3,
         "contractAddress": "0x03235jd94h294je93je92hedg395hd93"
     }

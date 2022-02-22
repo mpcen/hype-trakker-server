@@ -29,7 +29,8 @@ model Project {
     hasAllowList Boolean? @default(false)
     isRevealed Boolean? @default(false)
     projectState ProjectState? @default(PAUSED)
-    mintPrice String?
+    presaleMintPrice String?
+    publicSaleMintPrice String?
     maxMintPerTransaction Int?
     contractAddress String?
 

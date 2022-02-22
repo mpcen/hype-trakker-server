@@ -19,7 +19,8 @@ export interface Project {
     hasAllowList?: boolean;
     isRevealed?: boolean;
     projectState?: ProjectState;
-    mintPrice?: string;
+    presaleMintPrice?: string;
+    publicSaleMintPrice?: string;
     maxMintPerTransaction?: number;
     contractAddress?: string;
 }
