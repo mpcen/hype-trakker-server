@@ -31,7 +31,8 @@ model Project {
     projectState ProjectState? @default(PAUSED)
     presaleMintPrice String?
     publicSaleMintPrice String?
-    maxMintPerTransaction Int?
+    presaleMaxMintPerTransaction Int?
+    publicSaleMaxMintPerTransaction Int?
     contractAddress String?
 
     createdBy User? @relation(fields: [userId], references: [userId])

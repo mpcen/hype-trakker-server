@@ -60,7 +60,8 @@ export class ProjectRepository {
                     projectState: projectData.projectState,
                     presaleMintPrice: projectData.presaleMintPrice,
                     publicSaleMintPrice: projectData.publicSaleMintPrice,
-                    maxMintPerTransaction: projectData.maxMintPerTransaction,
+                    presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction,
+                    publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction,
                     contractAddress: projectData.contractAddress,
                     createdBy: {
                         connect: {
@@ -100,7 +101,8 @@ export class ProjectRepository {
                     projectState: projectData.projectState,
                     presaleMintPrice: projectData.presaleMintPrice,
                     publicSaleMintPrice: projectData.publicSaleMintPrice,
-                    maxMintPerTransaction: projectData.maxMintPerTransaction,
+                    presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction,
+                    publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction,
                     contractAddress: projectData.contractAddress,
                 },
             });

@@ -37,8 +37,11 @@ export class ProjectService {
             allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
                 ? Number(projectData.allocatedAllowlistAmount)
                 : undefined,
-            maxMintPerTransaction: projectData.maxMintPerTransaction
-                ? Number(projectData.maxMintPerTransaction)
+            presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction
+                ? Number(projectData.presaleMaxMintPerTransaction)
+                : undefined,
+            publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction
+                ? Number(projectData.publicSaleMaxMintPerTransaction)
                 : undefined,
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
@@ -67,8 +70,11 @@ export class ProjectService {
             allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
                 ? Number(projectData.allocatedAllowlistAmount)
                 : undefined,
-            maxMintPerTransaction: projectData.maxMintPerTransaction
-                ? Number(projectData.maxMintPerTransaction)
+            presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction
+                ? Number(projectData.presaleMaxMintPerTransaction)
+                : undefined,
+            publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction
+                ? Number(projectData.publicSaleMaxMintPerTransaction)
                 : undefined,
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),

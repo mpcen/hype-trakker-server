@@ -21,6 +21,7 @@ export interface Project {
     projectState?: ProjectState;
     presaleMintPrice?: string;
     publicSaleMintPrice?: string;
-    maxMintPerTransaction?: number;
+    presaleMaxMintPerTransaction?: number;
+    publicSaleMaxMintPerTransaction?: number;
     contractAddress?: string;
 }
