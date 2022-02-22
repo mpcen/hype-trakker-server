@@ -20,7 +20,7 @@ export class UserRepository {
         try {
             const user = await this.prismaClient.user.findFirst({
                 where: {
-                    user_id: id,
+                    userId: id,
                 },
             });
 
@@ -57,9 +57,9 @@ export class UserRepository {
             const newUser = await this.prismaClient.user.create({
                 data: {
                     address: data.address,
-                    user_name: data.userName,
+                    userName: data.userName,
                     nonce: data.nonce,
-                    avatar_url: data.avatarUrl,
+                    avatarUrl: data.avatarUrl,
                 },
             });
 
@@ -75,12 +75,12 @@ export class UserRepository {
     async updateUser(id: number, data: User) {
         try {
             const updatedUser = await this.prismaClient.user.update({
-                where: { user_id: id },
+                where: { userId: id },
                 data: {
                     address: data.address,
-                    user_name: data.userName,
+                    userName: data.userName,
                     nonce: data.nonce,
-                    avatar_url: data.avatarUrl,
+                    avatarUrl: data.avatarUrl,
                 },
             });
 
@@ -96,7 +96,7 @@ export class UserRepository {
     async deleteUser(id: number) {
         try {
             const deletedUser = await this.prismaClient.user.delete({
-                where: { user_id: id },
+                where: { userId: id },
             });
 
             console.dir({ method: 'delete', deletedUser }, { depth: null });

@@ -42,7 +42,7 @@ export class AuthService {
         try {
             const token = new Promise<string | undefined>((resolve) =>
                 jwt.sign(
-                    { payload: { id: user.user_id, address: user.address } },
+                    { payload: { id: user.userId, address: user.address } },
                     JWT_SECRET as string,
                     (err: Error | null, token: string | undefined) => {
                         if (err) {
@@ -62,7 +62,7 @@ export class AuthService {
 
     private async updateUserNonce(user: User) {
         try {
-            await this.userRepository.updateUser(user.user_id, {
+            await this.userRepository.updateUser(user.userId, {
                 address: user.address,
                 nonce: Math.floor(Math.random() * 10000),
             });

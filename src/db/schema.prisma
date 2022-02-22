@@ -11,39 +11,39 @@ datasource db {
 }
 
 model Project {
-    project_id Int @id @default(autoincrement())
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    projectId Int @id @default(autoincrement())
+    createdAt DateTime @db.Timestamptz() @default(now())
+    updatedAt DateTime @db.Timestamptz() @updatedAt
 
     name String @db.VarChar(255)
     supply Int?
-    allocated_allowlist_amount Int?
+    allocatedAllowlistAmount Int? @default(0)
     description String?
-    twitter_handle String?
-    discord_url String?
-    opensea_url String?
-    presale_datetime DateTime?
-    public_sale_datetime DateTime?
-    has_allow_list Boolean?
-    is_revealed Boolean?
-    project_state ProjectState? @default(PAUSED)
-    mint_price String?
-    max_mint_per_transaction Int?
-    contract_address String?
+    twitterHandle String?
+    discordUrl String?
+    openseaUrl String?
+    presaleDatetime DateTime? @db.Timestamptz()
+    publicSaleDatetime DateTime? @db.Timestamptz()
+    hasAllowList Boolean? @default(false)
+    isRevealed Boolean? @default(false)
+    projectState ProjectState? @default(PAUSED)
+    mintPrice String?
+    maxMintPerTransaction Int?
+    contractAddress String?
 
-    created_by User? @relation(fields: [userId], references: [user_id])
+    createdBy User? @relation(fields: [userId], references: [userId])
     userId Int?
 }
 
 model User {
-    user_id Int @id @default(autoincrement())
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    userId Int @id @default(autoincrement())
+    createdAt DateTime @db.Timestamptz() @default(now())
+    updatedAt DateTime @db.Timestamptz() @updatedAt
     
     address String @db.VarChar(255) @unique
-    user_name String? @db.VarChar(255) @unique
+    userName String? @db.VarChar(255) @unique
     nonce Int
-    avatar_url String? @db.VarChar(255)
+    avatarUrl String? @db.VarChar(255)
 
     projects Project[]
 }

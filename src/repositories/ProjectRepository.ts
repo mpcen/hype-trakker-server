@@ -9,8 +9,8 @@ export class ProjectRepository {
         try {
             const projects = await this.prismaClient.project.findMany({
                 where: {
-                    created_by: {
-                        user_id: userId,
+                    createdBy: {
+                        userId: userId,
                     },
                 },
             });
@@ -26,9 +26,9 @@ export class ProjectRepository {
         try {
             const project = await this.prismaClient.project.findFirst({
                 where: {
-                    project_id: projectId,
-                    created_by: {
-                        user_id: userId,
+                    projectId: projectId,
+                    createdBy: {
+                        userId: userId,
                     },
                 },
             });
@@ -46,22 +46,22 @@ export class ProjectRepository {
                 data: {
                     name: projectData.name,
                     supply: projectData.supply,
-                    allocated_allowlist_amount: projectData.allocatedAllowlistAmount,
+                    allocatedAllowlistAmount: projectData.allocatedAllowlistAmount,
                     description: projectData.description,
-                    twitter_handle: projectData.twitterHandle,
-                    discord_url: projectData.discordUrl,
-                    opensea_url: projectData.openseaUrl,
-                    presale_datetime: projectData.presaleDatetime,
-                    public_sale_datetime: projectData.publicSaleDatetime,
-                    has_allow_list: projectData.hasAllowList,
-                    is_revealed: projectData.isRevealed,
-                    project_state: projectData.projectState,
-                    mint_price: projectData.mintPrice,
-                    max_mint_per_transaction: projectData.maxMintPerTransaction,
-                    contract_address: projectData.contractAddress,
-                    created_by: {
+                    twitterHandle: projectData.twitterHandle,
+                    discordUrl: projectData.discordUrl,
+                    openseaUrl: projectData.openseaUrl,
+                    presaleDatetime: projectData.presaleDatetime,
+                    publicSaleDatetime: projectData.publicSaleDatetime,
+                    hasAllowList: projectData.hasAllowList,
+                    isRevealed: projectData.isRevealed,
+                    projectState: projectData.projectState,
+                    mintPrice: projectData.mintPrice,
+                    maxMintPerTransaction: projectData.maxMintPerTransaction,
+                    contractAddress: projectData.contractAddress,
+                    createdBy: {
                         connect: {
-                            user_id: userId,
+                            userId: userId,
                         },
                     },
                 },
@@ -76,26 +76,26 @@ export class ProjectRepository {
         }
     }
 
-    async updateProject(id: number, data: Project) {
+    async updateProject(id: number, projectData: Project) {
         try {
             const updatedProject = await this.prismaClient.project.update({
-                where: { project_id: id },
+                where: { projectId: id },
                 data: {
-                    name: data.name,
-                    supply: data.supply,
-                    allocated_allowlist_amount: data.allocatedAllowlistAmount,
-                    description: data.description,
-                    twitter_handle: data.twitterHandle,
-                    discord_url: data.discordUrl,
-                    opensea_url: data.openseaUrl,
-                    presale_datetime: data.presaleDatetime,
-                    public_sale_datetime: data.publicSaleDatetime,
-                    has_allow_list: data.hasAllowList,
-                    is_revealed: data.isRevealed,
-                    project_state: data.projectState,
-                    mint_price: data.mintPrice,
-                    max_mint_per_transaction: data.maxMintPerTransaction,
-                    contract_address: data.contractAddress,
+                    name: projectData.name,
+                    supply: projectData.supply,
+                    allocatedAllowlistAmount: projectData.allocatedAllowlistAmount,
+                    description: projectData.description,
+                    twitterHandle: projectData.twitterHandle,
+                    discordUrl: projectData.discordUrl,
+                    openseaUrl: projectData.openseaUrl,
+                    presaleDatetime: projectData.presaleDatetime,
+                    publicSaleDatetime: projectData.publicSaleDatetime,
+                    hasAllowList: projectData.hasAllowList,
+                    isRevealed: projectData.isRevealed,
+                    projectState: projectData.projectState,
+                    mintPrice: projectData.mintPrice,
+                    maxMintPerTransaction: projectData.maxMintPerTransaction,
+                    contractAddress: projectData.contractAddress,
                 },
             });
 
@@ -111,7 +111,7 @@ export class ProjectRepository {
     async deleteProject(id: number) {
         try {
             const deletedProject = await this.prismaClient.project.delete({
-                where: { project_id: id },
+                where: { projectId: id },
             });
 
             console.dir(deletedProject, { depth: null });

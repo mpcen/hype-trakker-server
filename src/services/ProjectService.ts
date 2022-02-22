@@ -1,5 +1,8 @@
+import { isValid } from 'date-fns';
+
 import { Project } from '../interfaces/Project';
 import { ProjectRepository } from '../repositories/ProjectRepository';
+import { serializeDatetime } from '../util/datetime-serializer';
 
 export class ProjectService {
     constructor(private projectRepository: ProjectRepository) {}
@@ -27,8 +30,23 @@ export class ProjectService {
     }
 
     async createProject(userId: number, projectData: Project) {
+        const cleanedProjectData: Project = {
+            ...projectData,
+            supply: projectData.supply ? Number(projectData.supply) : 0,
+            allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
+                ? Number(projectData.allocatedAllowlistAmount)
+                : undefined,
+            maxMintPerTransaction: projectData.maxMintPerTransaction
+                ? Number(projectData.maxMintPerTransaction)
+                : undefined,
+            presaleDatetime: serializeDatetime(projectData.presaleDatetime),
+            publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
+            isRevealed: projectData.isRevealed ? Boolean(projectData.isRevealed) : undefined,
+            hasAllowList: projectData.hasAllowList ? Boolean(projectData.hasAllowList) : undefined,
+        };
+
         try {
-            const project = await this.projectRepository.createProject(userId, projectData);
+            const project = await this.projectRepository.createProject(userId, cleanedProjectData);
 
             return project;
         } catch (err) {
@@ -37,14 +55,29 @@ export class ProjectService {
         }
     }
 
-    async updateProject(id: number, data: Project) {
+    async updateProject(id: number, projectData: Project) {
+        const cleanedProjectData: Project = {
+            ...projectData,
+            supply: projectData.supply ? Number(projectData.supply) : undefined,
+            allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
+                ? Number(projectData.allocatedAllowlistAmount)
+                : undefined,
+            maxMintPerTransaction: projectData.maxMintPerTransaction
+                ? Number(projectData.maxMintPerTransaction)
+                : undefined,
+            presaleDatetime: serializeDatetime(projectData.presaleDatetime),
+            publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
+            isRevealed: projectData.isRevealed ? Boolean(projectData.isRevealed) : undefined,
+            hasAllowList: projectData.hasAllowList ? Boolean(projectData.hasAllowList) : undefined,
+        };
+
         try {
-            const project = await this.projectRepository.updateProject(id, data);
+            const project = await this.projectRepository.updateProject(id, cleanedProjectData);
 
             return project;
         } catch (err) {
-            console.log('ProjectService.createProject Error:', err);
-            throw new Error('ProjectService.createProject - Internal Server Error');
+            console.log('ProjectService.updateProject Error:', err);
+            throw new Error('ProjectService.updateProject - Internal Server Error');
         }
     }
 
