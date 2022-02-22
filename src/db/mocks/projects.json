@@ -2,6 +2,7 @@
     {
         "name": "Doodles",
         "supply": 10000,
+        "totalAllowlistSpots": 1000,
         "allocatedAllowlistAmount": 3,
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         "twitterHandle": "@doodles",
@@ -20,6 +21,7 @@
     {
         "name": "Bored Ape Yacht Club",
         "supply": 5000,
+        "totalAllowlistSpots": 1000,
         "allocatedAllowlistAmount": 3,
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         "twitterHandle": "@bayc",
@@ -38,6 +40,7 @@
     {
         "name": "Cool Cats",
         "supply": 1000,
+        "totalAllowlistSpots": 1000,
         "allocatedAllowlistAmount": 3,
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         "twitterHandle": "@coolcats",
@@ -56,6 +59,7 @@
     {
         "name": "3Landers",
         "supply": 1000,
+        "totalAllowlistSpots": 100,
         "allocatedAllowlistAmount": 3,
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         "twitterHandle": "@3landers",

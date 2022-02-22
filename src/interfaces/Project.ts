@@ -8,6 +8,7 @@ export interface Project {
     name: string;
     supply?: number;
     allocatedAllowlistAmount?: number;
+    totalAllowlistSpots?: number;
     description?: string;
     twitterHandle?: string;
     discordUrl?: string;

@@ -1,5 +1,3 @@
-import { isValid } from 'date-fns';
-
 import { Project } from '../interfaces/Project';
 import { ProjectRepository } from '../repositories/ProjectRepository';
 import { serializeDatetime } from '../util/datetime-serializer';
@@ -32,7 +30,10 @@ export class ProjectService {
     async createProject(userId: number, projectData: Project) {
         const cleanedProjectData: Project = {
             ...projectData,
-            supply: projectData.supply ? Number(projectData.supply) : 0,
+            supply: projectData.supply ? Number(projectData.supply) : undefined,
+            totalAllowlistSpots: projectData.totalAllowlistSpots
+                ? Number(projectData.totalAllowlistSpots)
+                : undefined,
             allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
                 ? Number(projectData.allocatedAllowlistAmount)
                 : undefined,
@@ -60,6 +61,9 @@ export class ProjectService {
         const cleanedProjectData: Project = {
             ...projectData,
             supply: projectData.supply ? Number(projectData.supply) : undefined,
+            totalAllowlistSpots: projectData.totalAllowlistSpots
+                ? Number(projectData.totalAllowlistSpots)
+                : undefined,
             allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
                 ? Number(projectData.allocatedAllowlistAmount)
                 : undefined,

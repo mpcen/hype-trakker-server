@@ -46,6 +46,7 @@ export class ProjectRepository {
                 data: {
                     name: projectData.name,
                     supply: projectData.supply,
+                    totalAllowlistSpots: projectData.totalAllowlistSpots,
                     allocatedAllowlistAmount: projectData.allocatedAllowlistAmount,
                     description: projectData.description,
                     twitterHandle: projectData.twitterHandle,
@@ -84,6 +85,7 @@ export class ProjectRepository {
                 data: {
                     name: projectData.name,
                     supply: projectData.supply,
+                    totalAllowlistSpots: projectData.totalAllowlistSpots,
                     allocatedAllowlistAmount: projectData.allocatedAllowlistAmount,
                     description: projectData.description,
                     twitterHandle: projectData.twitterHandle,
