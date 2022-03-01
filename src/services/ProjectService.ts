@@ -79,8 +79,12 @@ export class ProjectService {
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
             revealDatetime: serializeDatetime(projectData.revealDatetime),
-            isRevealed: projectData.isRevealed ? Boolean(projectData.isRevealed) : undefined,
-            hasAllowList: projectData.hasAllowList ? Boolean(projectData.hasAllowList) : undefined,
+            isRevealed:
+                typeof projectData.isRevealed === 'boolean' ? projectData.isRevealed : undefined,
+            hasAllowList:
+                typeof projectData.hasAllowList === 'boolean'
+                    ? projectData.hasAllowList
+                    : undefined,
         };
 
         try {
