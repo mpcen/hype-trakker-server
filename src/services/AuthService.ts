@@ -21,7 +21,7 @@ export class AuthService {
 
     private async verifySignature(user: User, clientSignature: string) {
         try {
-            const serverSignature = `I am signing my one-time nonce: ${user.nonce}. This signature will be used for authentication. No transactions will ever be executed without your permission.`;
+            const serverSignature = `I am signing my one-time nonce: ${user.nonce}.\n\nThis signature will be used for authentication.\n\nNo transactions will ever be executed\nwithout your permission.`;
             const serverSignatureBufferHex = ethUtil.bufferToHex(
                 Buffer.from(serverSignature, 'utf8')
             );
