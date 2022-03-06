@@ -1,31 +1,43 @@
-import { Request, RequestHandler, Response } from 'express';
+import { Request, RequestHandler, Response } from "express";
 
-import { AuthUserSignature } from '../../interfaces/Auth';
-import { AuthService } from '../../services/AuthService';
-import { UserService } from '../../services/UserService';
+import { AuthUserSignature } from "../../interfaces/Auth";
+import { AuthService } from "../../services/AuthService";
+import { UserService } from "../../services/UserService";
 
-export const authUser = (authService: AuthService, userService: UserService): RequestHandler => {
-    return async (req: Request, res: Response) => {
-        const { address, signature }: AuthUserSignature = req.body;
+export const authUser = (
+  authService: AuthService,
+  userService: UserService
+): RequestHandler => {
+  return async (req: Request, res: Response) => {
+    const { address, signature }: AuthUserSignature = req.body;
 
-        if (!address || !signature) {
-            return res
-                .status(400)
-                .json({ message: 'You must provide an address and signature for authentication' });
-        }
+    if (!address || !signature) {
+      return res
+        .status(400)
+        .json({
+          message:
+            "You must provide an address and signature for authentication",
+        });
+    }
 
-        try {
-            const user = await userService.getUserByAddress(address);
+    try {
+      const user = await userService.getUserByAddress(address);
 
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' });
-            }
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
 
-            const token = await authService.authenticate(user, signature);
+      const token = await authService.authenticate(user, signature);
 
-            res.json(token);
-        } catch (err) {
-            return res.status(500).json({ message: 'Internal server error - authUser' });
-        }
-    };
+      res.json(token);
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(500).json({ message: err.message });
+      }
+
+      return res
+        .status(500)
+        .json({ message: "Internal server error - authUser" });
+    }
+  };
 };
