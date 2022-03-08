@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "build": "tsc",
         "migration:dev": "prisma migrate dev",
         "dev": "ts-node-dev --respawn --transpile-only --exit-child src/index.ts"
     },
