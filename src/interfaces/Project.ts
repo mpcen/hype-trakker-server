@@ -24,4 +24,5 @@ export interface Project {
     presaleMaxMintPerTransaction?: number;
     publicSaleMaxMintPerTransaction?: number;
     contractAddress?: string;
+    isArchived?: boolean;
 }

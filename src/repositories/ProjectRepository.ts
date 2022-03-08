@@ -63,6 +63,7 @@ export class ProjectRepository {
                     presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction,
                     publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction,
                     contractAddress: projectData.contractAddress,
+                    isArchived: projectData.isArchived,
                     createdBy: {
                         connect: {
                             userId: userId,
@@ -104,6 +105,7 @@ export class ProjectRepository {
                     presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction,
                     publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction,
                     contractAddress: projectData.contractAddress,
+                    isArchived: projectData.isArchived,
                 },
             });
 
@@ -116,6 +118,7 @@ export class ProjectRepository {
         }
     }
 
+    // NOT USED ATM
     async deleteProject(id: number) {
         try {
             const deletedProject = await this.prismaClient.project.delete({
@@ -128,6 +131,25 @@ export class ProjectRepository {
         } catch (err) {
             console.log('ProjectRepository.deleteProject error:', err);
             throw new Error('ProjectRepository.deleteProject - Internal Server Error');
+        }
+    }
+
+    async archiveProject(id: number, isArchived: boolean) {
+        try {
+            const archivedProject = await this.prismaClient.project.update({
+                where: { projectId: id },
+                data: { isArchived },
+            });
+
+            console.dir(archivedProject, { depth: null });
+
+            return archivedProject;
+        } catch (err) {
+            if (err instanceof Error) {
+                throw new Error(err.message);
+            } else {
+                throw new Error('ProjectRepository.archiveProject - Internal Server Error');
+            }
         }
     }
 }

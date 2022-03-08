@@ -31,9 +31,7 @@ export class ProjectService {
         const cleanedProjectData: Project = {
             ...projectData,
             supply: projectData.supply ? Number(projectData.supply) : undefined,
-            totalAllowlistSpots: projectData.totalAllowlistSpots
-                ? Number(projectData.totalAllowlistSpots)
-                : undefined,
+            totalAllowlistSpots: projectData.totalAllowlistSpots ? Number(projectData.totalAllowlistSpots) : undefined,
             allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
                 ? Number(projectData.allocatedAllowlistAmount)
                 : undefined,
@@ -64,9 +62,7 @@ export class ProjectService {
         const cleanedProjectData: Project = {
             ...projectData,
             supply: projectData.supply ? Number(projectData.supply) : undefined,
-            totalAllowlistSpots: projectData.totalAllowlistSpots
-                ? Number(projectData.totalAllowlistSpots)
-                : undefined,
+            totalAllowlistSpots: projectData.totalAllowlistSpots ? Number(projectData.totalAllowlistSpots) : undefined,
             allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
                 ? Number(projectData.allocatedAllowlistAmount)
                 : undefined,
@@ -79,12 +75,8 @@ export class ProjectService {
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
             revealDatetime: serializeDatetime(projectData.revealDatetime),
-            isRevealed:
-                typeof projectData.isRevealed === 'boolean' ? projectData.isRevealed : undefined,
-            hasAllowList:
-                typeof projectData.hasAllowList === 'boolean'
-                    ? projectData.hasAllowList
-                    : undefined,
+            isRevealed: typeof projectData.isRevealed === 'boolean' ? projectData.isRevealed : undefined,
+            hasAllowList: typeof projectData.hasAllowList === 'boolean' ? projectData.hasAllowList : undefined,
         };
 
         try {
@@ -97,6 +89,7 @@ export class ProjectService {
         }
     }
 
+    // NOT USED ATM
     async deleteProject(id: number) {
         try {
             const deletedProject = await this.projectRepository.deleteProject(id);
@@ -105,6 +98,17 @@ export class ProjectService {
         } catch (err) {
             console.log('ProjectService.deleteProject Error:', err);
             throw new Error('ProjectService.deleteProject - Internal Server Error');
+        }
+    }
+
+    async archiveProject(id: number, isArchived: boolean) {
+        try {
+            const archivedProject = await this.projectRepository.archiveProject(id, isArchived);
+
+            return archivedProject;
+        } catch (err) {
+            console.log('ProjectService.archiveProject Error:', err);
+            throw new Error('ProjectService.archiveProject - Internal Server Error');
         }
     }
 }

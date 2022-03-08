@@ -5,10 +5,10 @@ import { createProject } from './project-create';
 import { getProject } from './project-get';
 import { getProjects } from './projects-get';
 import { updateProject } from './project-update';
-import { deleteProject } from './project-delete';
 import { ProjectService } from '../../services/ProjectService';
 import { ProjectRepository } from '../../repositories/ProjectRepository';
 import { requireAuth } from '../../middleware/requireAuth';
+import { archiveProject } from './project-archive';
 
 export function getProjectRoutes(router: Router, prismaClient: PrismaClient) {
     const projectRepository = new ProjectRepository(prismaClient);
@@ -20,7 +20,7 @@ export function getProjectRoutes(router: Router, prismaClient: PrismaClient) {
     router.get('/:id', getProject(projectService));
     router.put('/:id', updateProject(projectService));
     router.post('/', createProject(projectService));
-    router.delete('/:id', deleteProject(projectService));
+    router.delete('/:id', archiveProject(projectService));
 
     return router;
 }

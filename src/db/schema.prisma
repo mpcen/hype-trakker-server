@@ -34,6 +34,7 @@ model Project {
     presaleMaxMintPerTransaction Int?
     publicSaleMaxMintPerTransaction Int?
     contractAddress String?
+    isArchived Boolean? @default(false)
 
     createdBy User? @relation(fields: [userId], references: [userId])
     userId Int?
