@@ -55,7 +55,9 @@ jobs:
                   name: node-app
 
             - name: Install production version of application
-              run: npm install
+              run: |
+                  npm install
+                  npx prisma generate
 
             - name: 'Deploy to Azure Web App'
               uses: azure/webapps-deploy@v2
