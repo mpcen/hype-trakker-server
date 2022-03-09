@@ -36,6 +36,7 @@ jobs:
             - name: Move app dependencies to dist/
               run: |
                   mv package.json dist/
+                  mv src/db dist/
 
             - name: Store the contents of dist/ as an Artifact
               uses: actions/upload-artifact@v2
