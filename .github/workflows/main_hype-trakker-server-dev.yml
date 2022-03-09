@@ -9,36 +9,44 @@ on:
             - main
     workflow_dispatch:
 
+env:
+    AZURE_WEBAPP_NAME: hype-trakker-server-dev # set this to your application's name
+    AZURE_WEBAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
+    NODE_VERSION: '16.x'
+    SLOT_NAME: 'Production'
+
 jobs:
     build:
+        name: Build, Test, Archive
         runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v2
 
-            - name: Set up Node.js version
-              uses: actions/setup-node@v1
+            - name: Set up Node ${{ env.NODE_VERSION }}
+              uses: actions/setup-node@v2
               with:
-                  node-version: '16.x'
+                  node-version: ${{ env.NODE_VERSION }}
 
             - name: npm install, build, and test
               run: |
                   npm install
                   npm run build
-                  npm run test --if-present
 
-            - name: Upload artifact for deployment job
+            - name: Move app dependencies to dist/
+              run: |
+                  mv package.json dist/
+
+            - name: Store the contents of dist/ as an Artifact
               uses: actions/upload-artifact@v2
               with:
                   name: node-app
-                  path: .
+                  path: dist
 
     deploy:
-        runs-on: ubuntu-latest
+        name: Deploy to Azure
         needs: build
-        environment:
-            name: 'Production'
-            url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+        runs-on: ubuntu-latest
 
         steps:
             - name: Download artifact from build job
@@ -46,11 +54,13 @@ jobs:
               with:
                   name: node-app
 
+            - name: Install production version of application
+              run: npm install --production
+
             - name: 'Deploy to Azure Web App'
-              id: deploy-to-webapp
               uses: azure/webapps-deploy@v2
               with:
-                  app-name: 'hype-trakker-server-dev'
-                  slot-name: 'Production'
+                  app-name: ${{ env.AZURE_WEBAPP_NAME }}
+                  slot-name: ${{ env.SLOT_NAME }}
                   publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7233A7B128754FF68DAAEBDBBEBAE1F7 }}
                   package: .
