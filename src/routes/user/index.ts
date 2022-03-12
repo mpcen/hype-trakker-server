@@ -15,7 +15,7 @@ export function getUserRoutes(router: Router, prismaClient: PrismaClient) {
     const userService = new UserService(userRepository);
 
     router.get('/id/:id', getUserById(userService));
-    router.post('/address/:address', getUserByAddress(userService));
+    router.get('/address/:address', getUserByAddress(userService));
     router.get('/all', getUsers(userService));
     router.post('/', createUser(userService));
     router.put('/:id', updateUser(userService));
