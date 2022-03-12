@@ -7,7 +7,7 @@ export enum ProjectState {
 export interface Project {
     name: string;
     supply?: number;
-    allocatedAllowlistAmount?: number;
+    acquiredAllowList?: boolean;
     totalAllowlistSpots?: number;
     description?: string;
     twitterHandle?: string;

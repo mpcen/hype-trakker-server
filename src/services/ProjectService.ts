@@ -32,9 +32,7 @@ export class ProjectService {
             ...projectData,
             supply: projectData.supply ? Number(projectData.supply) : undefined,
             totalAllowlistSpots: projectData.totalAllowlistSpots ? Number(projectData.totalAllowlistSpots) : undefined,
-            allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
-                ? Number(projectData.allocatedAllowlistAmount)
-                : undefined,
+            acquiredAllowList: projectData.acquiredAllowList ? Boolean(projectData.acquiredAllowList) : undefined,
             presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction
                 ? Number(projectData.presaleMaxMintPerTransaction)
                 : undefined,
@@ -44,8 +42,6 @@ export class ProjectService {
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
             revealDatetime: serializeDatetime(projectData.revealDatetime),
-            isRevealed: projectData.isRevealed ? Boolean(projectData.isRevealed) : undefined,
-            hasAllowList: projectData.hasAllowList ? Boolean(projectData.hasAllowList) : undefined,
         };
 
         try {
@@ -63,9 +59,6 @@ export class ProjectService {
             ...projectData,
             supply: projectData.supply ? Number(projectData.supply) : undefined,
             totalAllowlistSpots: projectData.totalAllowlistSpots ? Number(projectData.totalAllowlistSpots) : undefined,
-            allocatedAllowlistAmount: projectData.allocatedAllowlistAmount
-                ? Number(projectData.allocatedAllowlistAmount)
-                : undefined,
             presaleMaxMintPerTransaction: projectData.presaleMaxMintPerTransaction
                 ? Number(projectData.presaleMaxMintPerTransaction)
                 : undefined,
@@ -76,7 +69,6 @@ export class ProjectService {
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
             revealDatetime: serializeDatetime(projectData.revealDatetime),
             isRevealed: typeof projectData.isRevealed === 'boolean' ? projectData.isRevealed : undefined,
-            hasAllowList: typeof projectData.hasAllowList === 'boolean' ? projectData.hasAllowList : undefined,
         };
 
         try {

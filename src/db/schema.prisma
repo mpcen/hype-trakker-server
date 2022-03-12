@@ -17,7 +17,7 @@ model Project {
 
     name String @db.VarChar(255)
     supply Int?
-    allocatedAllowlistAmount Int? @default(0)
+    acquiredAllowList Boolean? @default(true)
     totalAllowlistSpots Int? @default(0)
     description String?
     twitterHandle String?
