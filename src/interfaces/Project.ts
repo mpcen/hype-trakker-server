@@ -4,12 +4,18 @@ export enum ProjectState {
     PUBLIC = 'PUBLIC',
 }
 
+export enum Plan {
+    UNDECIDED = 'UNDECIDED',
+    FLIP = 'FLIP',
+    HODL = 'HODL',
+}
+
 export interface Project {
     name: string;
     supply?: number;
     acquiredAllowList?: boolean;
     totalAllowlistSpots?: number;
-    description?: string;
+    plan?: Plan;
     twitterHandle?: string;
     discordUrl?: string;
     openseaUrl?: string;

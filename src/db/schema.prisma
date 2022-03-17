@@ -19,7 +19,7 @@ model Project {
     supply Int?
     acquiredAllowList Boolean? @default(true)
     totalAllowlistSpots Int? @default(0)
-    description String?
+    plan Plan? @default(UNDECIDED)
     twitterHandle String?
     discordUrl String?
     openseaUrl String?
@@ -57,4 +57,10 @@ enum ProjectState {
     PAUSED
     PRESALE
     PUBLIC
+}
+
+enum Plan {
+    UNDECIDED
+    FLIP
+    HODL
 }
