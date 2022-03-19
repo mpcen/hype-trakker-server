@@ -18,7 +18,7 @@ model Project {
     name String @db.VarChar(255)
     supply Int?
     acquiredAllowList Boolean? @default(true)
-    totalAllowlistSpots Int? @default(0)
+    totalAllowlistSpots Int?
     plan Plan? @default(UNDECIDED)
     twitterHandle String?
     discordUrl String?
@@ -29,8 +29,8 @@ model Project {
     hasAllowList Boolean? @default(false)
     isRevealed Boolean? @default(false)
     projectState ProjectState? @default(PAUSED)
-    presaleMintPrice String?
-    publicSaleMintPrice String?
+    presaleMintPrice Float?
+    publicSaleMintPrice Float?
     presaleMaxMintPerTransaction Int?
     publicSaleMaxMintPerTransaction Int?
     contractAddress String?

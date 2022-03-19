@@ -39,6 +39,8 @@ export class ProjectService {
             publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction
                 ? Number(projectData.publicSaleMaxMintPerTransaction)
                 : undefined,
+            presaleMintPrice: projectData.presaleMintPrice ? Number(projectData.presaleMintPrice) : undefined,
+            publicSaleMintPrice: projectData.publicSaleMintPrice ? Number(projectData.publicSaleMintPrice) : undefined,
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
             revealDatetime: serializeDatetime(projectData.revealDatetime),
@@ -65,6 +67,8 @@ export class ProjectService {
             publicSaleMaxMintPerTransaction: projectData.publicSaleMaxMintPerTransaction
                 ? Number(projectData.publicSaleMaxMintPerTransaction)
                 : undefined,
+            presaleMintPrice: projectData.presaleMintPrice ? Number(projectData.presaleMintPrice) : undefined,
+            publicSaleMintPrice: projectData.publicSaleMintPrice ? Number(projectData.publicSaleMintPrice) : undefined,
             presaleDatetime: serializeDatetime(projectData.presaleDatetime),
             publicSaleDatetime: serializeDatetime(projectData.publicSaleDatetime),
             revealDatetime: serializeDatetime(projectData.revealDatetime),

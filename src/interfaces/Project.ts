@@ -25,8 +25,8 @@ export interface Project {
     hasAllowList?: boolean;
     isRevealed?: boolean;
     projectState?: ProjectState;
-    presaleMintPrice?: string;
-    publicSaleMintPrice?: string;
+    presaleMintPrice?: number;
+    publicSaleMintPrice?: number;
     presaleMaxMintPerTransaction?: number;
     publicSaleMaxMintPerTransaction?: number;
     contractAddress?: string;
